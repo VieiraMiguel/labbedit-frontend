@@ -7,6 +7,19 @@ export const theme = extendTheme({
             variants: {
                 header: {
                     bg: 'laranja.500'
+                },
+                formMain:{
+                    width: '100%',
+                    bg: 'laranja.500',
+                    color: 'white',
+                    borderRadius:'100'
+                },
+                formSecondary:{
+                    width: '100%',
+                    bg: 'white',
+                    color: 'laranja.500',
+                    border: '1px',
+                    borderRadius:'100'
                 }
             }
         }
