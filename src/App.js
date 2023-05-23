@@ -5,7 +5,7 @@ import { theme } from './styles'
 const App = () => {
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router />
     </ChakraProvider>
   )
