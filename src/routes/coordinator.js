@@ -13,7 +13,7 @@ export const toFeedPage = (navigator) => {
     navigator('/feed')
 }
 
-export const toCommentsPage = (navigator) => {
+export const toCommentsPage = (navigator, id) => {
 
     navigator(`/comments/post/${id}`)
 }
