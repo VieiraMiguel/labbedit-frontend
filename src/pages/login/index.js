@@ -1,6 +1,6 @@
 import { useForm } from '../../hooks'
 import { useState } from 'react'
-import { validateEmail, validatePassword } from '../../constants/url'
+import { validateEmail, validatePassword } from '../../constants'
 import {
     CenteredPageContainer,
     FormContainer,
@@ -9,8 +9,17 @@ import {
 } from '../../components'
 import { Button } from '@chakra-ui/react'
 import loginLogo from '../../assets/login-logo.png'
+import { useNavigate } from 'react-router-dom'
+import {
+    toSignupPage,
+    toFeedPage
+} from '../../routes'
+import { Login } from '../../constants'
+
 
 export const LoginPage = () => {
+
+    const navigate = useNavigate()
 
     const [form, onChangeInputs, clearInputs] = useForm({
 
@@ -23,12 +32,27 @@ export const LoginPage = () => {
     const [isPasswordValid, setIsPasswordValid] = useState(true)
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
 
         e.preventDefault()
-        console.log(form)
         setIsEmailValid(validateEmail(form.email))
         setIsPasswordValid(validatePassword(form.password))
+
+        try {
+
+            const { token } = isEmailValid && isPasswordValid && await Login({
+                email: form.email,
+                password: form.password
+            })
+
+            localStorage.setItem('labeddit.token', token)
+
+            toFeedPage(navigate)
+
+        } catch (error) {
+
+            alert(error.response.data.message)
+        }
     }
 
 
@@ -56,7 +80,7 @@ export const LoginPage = () => {
                     />
 
                     <Button type='submit' variant='formMain'>Continuar</Button>
-                    <Button type='submit' variant='formSecondary'>Crie uma conta!</Button>
+                    <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSecondary'>Crie uma conta!</Button>
                 </form>
             </FormContainer>
         </CenteredPageContainer>
