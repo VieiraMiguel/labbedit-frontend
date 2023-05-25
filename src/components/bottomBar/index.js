@@ -1,10 +1,11 @@
 import { BottomBarStyled } from "./styled"
+import bottomBar from '../../assets/bottom-bar.png'
 
 export const BottomBar = () => {
 
     return(
         <BottomBarStyled>
-            <span>center item</span>
+            <img src={bottomBar}/>
         </BottomBarStyled>
     )
 }

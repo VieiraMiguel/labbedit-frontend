@@ -13,7 +13,7 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <TopBar />
-            <Header />
+            <Header/>
             <Routes>
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/signup' element={<SignupPage />} />

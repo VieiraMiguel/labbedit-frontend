@@ -79,8 +79,8 @@ export const LoginPage = () => {
                         isValid={isPasswordValid}
                     />
 
-                    <Button type='submit' variant='formMain'>Continuar</Button>
-                    <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSecondary'>Crie uma conta!</Button>
+                    <Button type='submit' variant='formLogin'>Continuar</Button>
+                    <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSignup'>Crie uma conta!</Button>
                 </form>
             </FormContainer>
         </CenteredPageContainer>
