@@ -1,11 +1,17 @@
 import { FeedContainerStyled, PostCardStyled } from './styled'
 import { useEffect, useState } from 'react'
 import { PostsList } from '../../constants'
-import { useNavigate } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 import {
-    toCommentsPage
+    toCommentsPage, toFeedPage
 } from '../../routes'
-import { Button } from '@chakra-ui/react'
+import {
+    Button,
+    Textarea
+} from '@chakra-ui/react'
+import { ContentTextArea, FormContainer, Header } from '../../components'
+import { useForm } from '../../hooks'
+import { AddPost } from '../../constants'
 
 
 export const FeedPage = () => {
@@ -31,12 +37,45 @@ export const FeedPage = () => {
     }
 
     const onClickAddPost = () => {
-        
+
+    }
+
+    const [form, onChangeInputs, clearInputs] = useForm({
+
+        content: ''
+    })
+
+    const onSubmit = async (e) => {
+
+        try {
+
+            await AddPost({
+
+                content: form.content
+            })
+
+        } catch (error) {
+
+            alert(error.response.data.message)
+        }
     }
 
     return (
         <FeedContainerStyled>
-            <Button onClick = {()=> onClickAddPost()} type='submit' variant='formMain'>Postar</Button>
+
+            <form onSubmit={onSubmit}>
+
+                <ContentTextArea
+                    value={form.content}
+                    onChange={onChangeInputs}
+                    isValid={true}
+                />
+
+                <Button type='submit' variant='formFeed'>Postar</Button>
+
+            </form>
+
+            <Button variant='formDivider'></Button>
 
             {posts.map((post, i) => (
 
