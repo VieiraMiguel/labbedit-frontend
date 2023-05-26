@@ -30,11 +30,54 @@ export const PostsList = async () => {
     return data
 }
 
+export const PostById = async (id) => {
+
+    const { data } = await axios.get(
+        `${BASE_URL}/posts/${id}`,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
 export const AddPost = async (body) => {
 
     const { data } = await axios.post(
         `${BASE_URL}/posts`,
         body,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
+export const AddComment = async (postId, body) => {
+
+    const { data } = await axios.post(
+        `${BASE_URL}/comments/post/${postId}`,
+        body,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
+export const CommentsList = async (id) => {
+
+    const { data } = await axios.get(
+        `${BASE_URL}/comments/post/${id}`,
         {
             headers: {
                 Authorization: localStorage.getItem('labeddit.token')

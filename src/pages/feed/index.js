@@ -1,22 +1,21 @@
 import { FeedContainerStyled, PostCardStyled } from './styled'
 import { useEffect, useState } from 'react'
 import { PostsList } from '../../constants'
-import { Form, useNavigate } from 'react-router-dom'
-import {
-    toCommentsPage, toFeedPage
-} from '../../routes'
+import { useNavigate } from 'react-router-dom'
+import { toCommentsPage } from '../../routes'
 import {
     Button,
-    Textarea
 } from '@chakra-ui/react'
-import { ContentTextArea, FormContainer, Header } from '../../components'
-import { useForm } from '../../hooks'
+import { ContentTextArea } from '../../components'
+import { useForm, useProtectedPage } from '../../hooks'
 import { AddPost } from '../../constants'
 
 
 export const FeedPage = () => {
 
     const navigate = useNavigate()
+    
+    useProtectedPage(navigate)
 
     const [posts, setPosts] = useState([])
 
@@ -34,10 +33,6 @@ export const FeedPage = () => {
     const onClickPost = (id) => {
         console.log(id)
         toCommentsPage(navigate, id)
-    }
-
-    const onClickAddPost = () => {
-
     }
 
     const [form, onChangeInputs, clearInputs] = useForm({
