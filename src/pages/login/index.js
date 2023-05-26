@@ -17,7 +17,7 @@ import {
 import { Login } from '../../constants'
 
 
-export const LoginPage = () => {
+export const LoginPage = ({ setIsLoggedIn }) => {
 
     const navigate = useNavigate()
 
@@ -37,6 +37,7 @@ export const LoginPage = () => {
         e.preventDefault()
         setIsEmailValid(validateEmail(form.email))
         setIsPasswordValid(validatePassword(form.password))
+        setIsLoggedIn(true)
 
         try {
 
