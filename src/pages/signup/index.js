@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { validateName, validateEmail, validatePassword } from '../../constants'
 import {
     CenteredPageContainer,
+    SignupContainer,
     FormContainer,
     NameInput,
     EmailInput,
@@ -65,29 +66,52 @@ export const SignupPage = () => {
 
                 <form onSubmit={onSubmit}>
 
-                    <img src={loginLogo} alt='Labeddit Logo' />
-                    <h2>LabEddit</h2>
-                    <h3>O projeto de rede social da Labenu</h3>
+                    <div id='title'>
 
-                    <NameInput
-                        value={form.name}
-                        onChange={onChangeInputs}
-                        isValid={isNameValid}
-                    />
+                        <h2 id='signup' >{'Olá, boas vindas ao LabEddit ;)'}</h2>
 
-                    <EmailInput
-                        value={form.email}
-                        onChange={onChangeInputs}
-                        isValid={isEmailValid}
-                    />
+                    </div>
 
-                    <PasswordInput
-                        value={form.password}
-                        onChange={onChangeInputs}
-                        isValid={isPasswordValid}
-                    />
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
 
-                    <Button type='submit' variant='formMain'>Cadastrar</Button>
+                    <div>
+
+                        <NameInput
+                            value={form.name}
+                            onChange={onChangeInputs}
+                            isValid={isNameValid}
+                        />
+
+                        <EmailInput
+                            value={form.email}
+                            onChange={onChangeInputs}
+                            isValid={isEmailValid}
+                        />
+
+                        <PasswordInput
+                            value={form.password}
+                            onChange={onChangeInputs}
+                            isValid={isPasswordValid}
+                        />
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Ao continuar, você concorda com o noso Contrato de usuário e nossa Política de Privacidade</span>
+
+                        <span>Eu concordo em receber emails sobre coisas legais no Labeddit</span>
+
+                    </div>
+
+
+                    <Button type='submit' variant='formLogin'>Cadastrar</Button>
+
                 </form>
             </FormContainer>
         </CenteredPageContainer>

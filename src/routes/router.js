@@ -11,13 +11,14 @@ import { useState } from 'react'
 
 export const Router = () => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
 
     return (
         <BrowserRouter>
             <TopBar />
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             <Routes>
+                <Route path='/' element={<FeedPage />} />
                 <Route path='/login' element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path='/signup' element={<SignupPage />} />
                 <Route path='/feed' element={<FeedPage />} />

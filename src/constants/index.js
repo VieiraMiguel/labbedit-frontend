@@ -59,10 +59,24 @@ export const AddPost = async (body) => {
     return data
 }
 
-export const AddComment = async (postId, body) => {
+export const CommentsList = async (id) => {
+
+    const { data } = await axios.get(
+        `${BASE_URL}/comments/post/${id}`,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
+export const AddComment = async (id, body) => {
 
     const { data } = await axios.post(
-        `${BASE_URL}/comments/post/${postId}`,
+        `${BASE_URL}/comments/post/${id}`,
         body,
         {
             headers: {
@@ -74,10 +88,56 @@ export const AddComment = async (postId, body) => {
     return data
 }
 
-export const CommentsList = async (id) => {
+export const LikePost = async (id, body) => {
 
-    const { data } = await axios.get(
-        `${BASE_URL}/comments/post/${id}`,
+    const { data } = await axios.put(
+        `${BASE_URL}/posts/${id}/like`,
+        body,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
+export const DislikePost = async (id, body) => {
+
+    const { data } = await axios.put(
+        `${BASE_URL}/posts/${id}/like`,
+        body,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
+export const LikeComment = async (id, body) => {
+
+    const { data } = await axios.put(
+        `${BASE_URL}/comments/${id}/like`,
+        body,
+        {
+            headers: {
+                Authorization: localStorage.getItem('labeddit.token')
+            }
+        }
+    )
+
+    return data
+}
+
+export const DislikeComment = async (id, body) => {
+
+    const { data } = await axios.put(
+        `${BASE_URL}/comments/${id}/like`,
+        body,
         {
             headers: {
                 Authorization: localStorage.getItem('labeddit.token')

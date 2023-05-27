@@ -1,15 +1,21 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { FeedContainerStyled, PostCardStyled } from '../feed/styled'
-import { ContentTextArea } from '../../components'
-import { Button } from '@chakra-ui/react'
+import { ContentTextArea, ContentTextAreaComment } from '../../components'
+import {
+    Button,
+    IconButton
+} from '@chakra-ui/react'
 import { useForm, useProtectedPage } from '../../hooks'
-import { AddComment, CommentsList, PostById } from '../../constants'
+import { AddComment, CommentsList, LikeComment, DislikeComment, DislikePost, LikePost, PostById } from '../../constants'
+import { RxThickArrowUp, RxThickArrowDown } from 'react-icons/rx'
+import { IoChatboxOutline } from 'react-icons/io5'
+
 
 export const CommentsPage = () => {
 
     const navigate = useNavigate()
-    
+
     useProtectedPage(navigate)
 
     const { id } = useParams()
@@ -17,7 +23,6 @@ export const CommentsPage = () => {
     const [comments, setComments] = useState([])
     const [post, setPost] = useState([])
 
-    useEffect(() => {
 
         CommentsList(id)
             .then(data => {
@@ -26,9 +31,6 @@ export const CommentsPage = () => {
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
-
-    useEffect(() => {
 
         PostById(id)
             .then(data => {
@@ -38,7 +40,6 @@ export const CommentsPage = () => {
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
 
     const [form, onChangeInputs, clearInputs] = useForm({
 
@@ -60,6 +61,66 @@ export const CommentsPage = () => {
         }
     }
 
+    const onClickLike = async (id) => {
+
+        try {
+
+            await LikePost(id, {
+
+                like: true
+            })
+
+        } catch (error) {
+
+            alert(error.response.data.message)
+        }
+    }
+
+    const onClickDislike = async (id) => {
+
+        try {
+
+            await DislikePost(id, {
+
+                like: false
+            })
+
+        } catch (error) {
+
+            alert(error.response.data.message)
+        }
+    }
+
+    const onClickLikeComment = async (id) => {
+
+        try {
+
+            await LikeComment(id, {
+
+                like: true
+            })
+
+        } catch (error) {
+
+            alert(error.response.data.message)
+        }
+    }
+
+    const onClickDislikeComment = async (id) => {
+
+        try {
+
+            await DislikeComment(id, {
+
+                like: false
+            })
+
+        } catch (error) {
+
+            alert(error.response.data.message)
+        }
+    }
+
     return (
         <FeedContainerStyled>
 
@@ -67,12 +128,28 @@ export const CommentsPage = () => {
 
                 <PostCardStyled key={i} >
 
-                    <header>Enviado por: {post.creator.name}</header>
+                    <div>
 
-                    <main>{post.content}</main>
+                        <header>Enviado por: {post.creator.name}</header>
+
+                        <main>{post.content}</main>
+                    </div>
+
 
                     <footer>
-                        <span>{post.likes} {post.dislikes}</span>
+                        <IconButton style={{ background: 'none', hover: 'none' }} onClick={() => onClickLike(post.id)}>
+                            <RxThickArrowUp />
+                        </IconButton>
+
+                        <span>{post.likes - post.dislikes}</span>
+
+                        <IconButton style={{ background: 'none', hover: 'none' }} onClick={() => onClickDislike(post.id)}>
+                            <RxThickArrowDown />
+                        </IconButton>
+
+                        <IconButton style={{ background: 'none', hover: 'none' }}>
+                            <IoChatboxOutline />
+                        </IconButton>
 
                         <span>{post.comments}</span>
                     </footer>
@@ -83,7 +160,7 @@ export const CommentsPage = () => {
 
             <form onSubmit={onSubmit}>
 
-                <ContentTextArea
+                <ContentTextAreaComment
                     value={form.content}
                     onChange={onChangeInputs}
                     isValid={true}
@@ -93,18 +170,29 @@ export const CommentsPage = () => {
 
             </form>
 
-            <Button variant='formDivider'></Button>
+            <Button id='divider' variant='formDivider'></Button>
 
             {comments.map((comment, i) => (
 
                 <PostCardStyled key={i} >
 
-                    <header>Enviado por: {comment.creator.name}</header>
+                    <div>
 
-                    <main>{comment.content}</main>
+                        <header>Enviado por: {comment.creator.name}</header>
 
-                    <footer>
-                        <span>{comment.likes} {comment.dislikes}</span>
+                        <main>{comment.content}</main>
+                    </div>
+                    
+                    <footer style={{width:'30%'}}>
+                        <IconButton bg='none' onClick={() => onClickLikeComment(comment.id)}>
+                            <RxThickArrowUp />
+                        </IconButton>
+
+                        <span>{comment.likes - comment.dislikes}</span>
+
+                        <IconButton bg='none' onClick={() => onClickDislikeComment(comment.id)}>
+                            <RxThickArrowDown />
+                        </IconButton>
                     </footer>
 
                 </PostCardStyled>

@@ -64,24 +64,37 @@ export const LoginPage = ({ setIsLoggedIn }) => {
 
                 <form onSubmit={onSubmit}>
 
-                    <img src={loginLogo} alt='Labeddit Logo' />
-                    <h2>LabEddit</h2>
-                    <h3>O projeto de rede social da Labenu</h3>
+                    <div>
 
-                    <EmailInput
-                        value={form.email}
-                        onChange={onChangeInputs}
-                        isValid={isEmailValid}
-                    />
+                        <div id='img'>
+                            <img src={loginLogo} alt='Labeddit Logo' />
+                        </div>
 
-                    <PasswordInput
-                        value={form.password}
-                        onChange={onChangeInputs}
-                        isValid={isPasswordValid}
-                    />
+                        <h2>LabEddit</h2>
+                        <h3>O projeto de rede social da Labenu</h3>
 
-                    <Button type='submit' variant='formLogin'>Continuar</Button>
-                    <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSignup'>Crie uma conta!</Button>
+                    </div>
+
+                    <div>
+                        <EmailInput
+                            value={form.email}
+                            onChange={onChangeInputs}
+                            isValid={isEmailValid}
+                        />
+
+                        <PasswordInput
+                            value={form.password}
+                            onChange={onChangeInputs}
+                            isValid={isPasswordValid}
+                        />
+
+                        <Button type='submit' variant='formLogin'>Continuar</Button>
+                        <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSignup'>Crie uma conta!</Button>
+
+                    </div>
+                    
+                   <span></span>
+                   
                 </form>
             </FormContainer>
         </CenteredPageContainer>
