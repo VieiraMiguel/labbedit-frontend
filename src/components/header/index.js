@@ -6,6 +6,7 @@ import {
 } from '../../routes'
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import headerLogo from '../../assets/header-logo.png'
+import { TfiClose } from 'react-icons/tfi'
 
 export const Header = ({ isLoggedIn, setIsLoggedIn }) => {
 
@@ -32,21 +33,41 @@ export const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         switch (location.pathname) {
 
             case '/login':
+
                 return undefined
 
-            case `/comments/post/`:
+            case '/signup':
+
                 return (
                     <>
-                        <Button onClick={() => toFeedPage(navigate)} variant='header'>X</Button>
+                        <div></div>
+
                         <img src={headerLogo} />
+
+                        <Button onClick={buttonAction} variant='header'>{buttonText}</Button>
+                    </>
+                )
+
+            case `/feed`:
+
+                return (
+                    <>
+                        <div></div>
+
+                        <img src={headerLogo} />
+
                         <Button onClick={buttonAction} variant='header'>{buttonText}</Button>
                     </>
                 )
 
             default:
+
                 return (
                     <>
-                        <img src={headerLogo} />
+                        <Button id="close" onClick={() => toFeedPage(navigate)} variant='header'><TfiClose /></Button>
+
+                        <img src={headerLogo}/>
+
                         <Button onClick={buttonAction} variant='header'>{buttonText}</Button>
                     </>
                 )
