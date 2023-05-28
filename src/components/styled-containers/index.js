@@ -8,11 +8,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-
-    /* #title{
-        font-weight: bold;
-        //font-size: 29px;
-    } */
 `
 
 export const FormContainer = styled.div`
