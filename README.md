@@ -13,4 +13,4 @@ O projeto foi desenvolvido inspirado no Reddit orientado de acordo com o seguint
 
 ## Deploy da Aplicação
 
-labeddit-six.vercel.app
+[labeddit-six.vercel.app](https://labeddit-six.vercel.app/)
