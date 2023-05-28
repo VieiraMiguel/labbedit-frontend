@@ -89,13 +89,12 @@ export const LoginPage = ({ setIsLoggedIn }) => {
                         />
 
                         <Button type='submit' variant='formLogin'>Continuar</Button>
-                        <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSignup'>Crie uma conta!</Button>
 
                     </div>
-                    
-                   <span></span>
-                   
+
                 </form>
+                <Button onClick={() => toSignupPage(navigate)} type='submit' variant='formSignup'>Crie uma conta!</Button>
+
             </FormContainer>
         </CenteredPageContainer>
     )

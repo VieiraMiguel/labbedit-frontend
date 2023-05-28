@@ -1,7 +1,7 @@
 import { FeedContainerStyled, PostCardStyled } from './styled'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { LikePost, DislikePost, PostsList } from '../../constants'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toCommentsPage } from '../../routes'
 import {
     Button,
@@ -34,7 +34,7 @@ export const FeedPage = () => {
         toCommentsPage(navigate, id)
     }
 
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
 
         content: ''
     })

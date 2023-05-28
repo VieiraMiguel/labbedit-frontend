@@ -3,14 +3,12 @@ import { useState } from 'react'
 import { validateName, validateEmail, validatePassword } from '../../constants'
 import {
     CenteredPageContainer,
-    SignupContainer,
     FormContainer,
     NameInput,
     EmailInput,
     PasswordInput
 } from '../../components'
 import { Button } from '@chakra-ui/react'
-import loginLogo from '../../assets/login-logo.png'
 import { useNavigate } from 'react-router-dom'
 import { toFeedPage } from '../../routes'
 import { Signup } from '../../constants'
@@ -19,7 +17,7 @@ export const SignupPage = () => {
 
     const navigate = useNavigate()
 
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
 
         name: '',
         email: '',
@@ -35,7 +33,6 @@ export const SignupPage = () => {
     const onSubmit = async (e) => {
 
         e.preventDefault()
-        console.log(form)
         setIsEmailValid(validateEmail(form.email))
         setIsPasswordValid(validatePassword(form.password))
         setIsNameValid(validateName(form.name))

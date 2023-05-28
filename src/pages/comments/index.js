@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FeedContainerStyled, PostCardStyled } from '../feed/styled'
-import { ContentTextArea, ContentTextAreaComment } from '../../components'
+import { ContentTextAreaComment } from '../../components'
 import {
     Button,
     IconButton
@@ -35,13 +35,12 @@ export const CommentsPage = () => {
         PostById(id)
             .then(data => {
                 setPost(data)
-                console.log(post)
             })
             .catch((error) => {
                 console.log(error)
             })
 
-    const [form, onChangeInputs, clearInputs] = useForm({
+    const [form, onChangeInputs] = useForm({
 
         content: '',
     })
